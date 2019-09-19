@@ -1,0 +1,94 @@
+Core
+    Time
+    RandomGenerator
+    Object <pf.> // component
+    Log
+    ThreadPool
+    EventMgr // boost signals2 ???
+    App
+        FileSystem
+        ResourceMgr
+            Resource
+        GameObjMgr
+            GameObj
+            Component
+        SceneGraph <pf.>
+            Node                // scene_graph component
+            RenderQueue
+        World
+            vec<PObjPtr> objects
+            map_ptr
+                Serializer
+        Client
+            LocaleMgr
+            GUI
+                Console
+                Font
+            MainWindow <pf. pl.>
+            Input <pf. pl.>
+            Graphics
+                FrameGraphCommands
+                    Material
+                        Effects
+                            GlobalEffect      // render commands extension
+                                              // eff->Draw(RendererPtr, Frustum)
+                            LocalEffect       // eff->Draw(RenderPtr, ObjPtr)
+                        Texture
+                        Shader
+                            Pass
+                    RenderTarget
+                        Texture
+                    Light
+                    VBO
+                    Queries
+                    Render <pf. pl.>
+                        RenderCtxt<pl.>
+                        RenderState
+                RenderQue
+                FrameGraph
+                Camera
+                    FrameGraphPipeline
+                    Frustum
+                    Culler
+            SoundMgr
+        Server
+            WorldRef
+            NetworkMgr
+                // prediction
+                ReplicationMgr
+            VariableMgr
+            ActionList
+            Physics
+            AI
+
+pf. - polimorfic
+pl. - platform dependent
+
+Components:
+    -geometry
+    -animation
+    -material
+    -particle
+    -scene_node
+    -light
+
+States
+    object states:
+        - alpha state
+        - wire state
+        - cull state
+        - depth state
+        - offset state
+        - stencil state
+    frame states:
+        - viewport size
+        - clear color, depth, stencil
+        - multisample
+
+PipelineCommands
+    - drawForward
+    - drawDeffered
+    - switch RenderTarget
+    - draw overlays
+    - draw particles
+    - clear RenderTarget

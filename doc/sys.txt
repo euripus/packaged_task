@@ -1,0 +1,41 @@
+GameObj
+    GetComponent<TypeID>()
+    AddComponent<TypeID>(component_ptr)
+    SendMsg()
+    
+Component
+    GetGameObjPtr()
+    SendMsg()
+    
+SceneNode
+    parsingFunc
+    factoryFunc
+    renderFunc
+    
+Resource
+    get_type()
+    add_ref()
+    sub_ref()
+    
+Network
+
+
+
+
+auto obj = GameObjMgr::Create(   );
+
+auto pos = SceneMgr.CreatePosition(   );
+SceneMgr.Root().AddNode(pos);
+obj->AddComponent(pos);
+
+auto msh = ResourceMgr.Create( );
+msh.AddTexture();
+msh.AddMesh();
+msh.AddController();
+
+obj->AddComponent(std::move(msh));
+obj->AddComponent( NetworkMgr.Create());
+
+//============
+auto render_que = cam.GetRenderQue(SceneMgr.Root());
+cam.FrameGraph().Render(render_que);

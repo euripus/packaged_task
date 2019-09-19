@@ -1,0 +1,49 @@
+https://gamedev.ru/code/forum/?id=246570
+https://www.bfilipek.com/2018/06/variant.html
+https://stackoverflow.com/questions/28896909/how-to-call-clang-format-over-a-cpp-project-folder
+
+Server.Master
+    world_ref
+    clients_proxy
+    game_objects
+    scene_graph
+
+Server.Proxy
+    world_ref
+    server.master.connection
+    local.game_objects
+    local.scene_graph
+
+Server.Master.Update()
+    process_in_packets
+        clients_proxy.add_move_list
+    check_disconnect
+    world_ref.update()
+    send_out_packets
+        for(client : clients_proxy)
+            replicate(client)
+            send(client)
+
+Server.Proxy.Update()
+    process_in_packets
+    check_disconnect
+    world_ref.update(replication_data)
+    send_out_packets
+        send_move_list
+
+Client.Update()
+    input.update()
+    render
+    server.proxy.update_move_list
+
+Client
+    -send: input
+    -recieve: render_que
+
+Server.Proxy
+    -send: input
+    -recieve: wold.replica
+
+Server.Master
+    -send: world.replica
+    -recieve: client.x.input

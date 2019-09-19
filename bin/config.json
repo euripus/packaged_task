@@ -1,0 +1,39 @@
+{ 
+   "BaseConfig":{ 
+      "version": "1",
+      "Logging":{ 
+         "Output": "all",
+         "SeverityLevelFilter": "all",
+         "FileName": "log.txt"
+      },
+      "FileSystem":{ 
+         "RootPathRelative": "./Data",
+         "ResMgrDrivesNames":{ 
+            "TextureDrive": "textures",
+            "FontDrive": "fonts"
+         }
+      },
+      "Render":{ 
+         "PlatformType":{ 
+            "type": "glfw"
+         },
+         "Window":{ 
+            "fullscreen": "false",
+            "Title": "Sample window",
+            "Size":{ 
+               "x": "800",
+               "y": "600"
+            },
+            "Cursor":{ 
+               "File": "textures/cursor.tga",
+               "Visibility": "true"
+            }
+         },
+         "TargetOpenGLVersion":{ 
+            "major": "1",
+            "minor": "5"
+         },
+         "GLProfileMode": "CORE"
+      }
+   }
+}

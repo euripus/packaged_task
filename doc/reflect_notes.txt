@@ -1,0 +1,59 @@
+        MultiplayerBook
+struct MemVar
+
+struct DataType
+    std::vector<MemVar> members;
+    std::vector<MemVar> GetMembers();
+
+Object
+    static DataType
+
+void Serialize(Memory stream * mem, DataType * data, uint8_t * object)
+
+========================================================================
+
+        Serializer
+MemVarBase
+    virtual serialize(out_stream , t)
+    virtual deserialize(t, in_stream)
+
+GenericMemVar : public MemVarBase
+    MemPointer offset;
+    
+    virtual serialize(out_stream , t)
+    virtual deserialize(t, in_stream)
+    
+Reflect
+    std::vec<MemVarBase> members;
+    
+    serialize(out_stream , t)
+    deserialize(t, in_stream)
+    
+Object
+    static Reflect<Object> refl;
+
+========================================================================
+
+        Reflect
+TypeDescriptor
+    name
+    size;
+    
+    virtual getFullName() 
+    virtual dump(void * obj)
+    
+TypeResolver<>
+    TypeDescriptor * get()
+    
+TypeDescriptor_Struct : TypeDescriptor
+    Member
+        const char *     name;
+        size_t           offset;
+        TypeDescriptor * type;
+
+    std::vector<Member> members;
+    
+    virtual dump(void * obj)
+    
+Object
+    static TypeDescriptor_Struct Reflection;
